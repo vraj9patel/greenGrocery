@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+
+<div class="hero-wrap hero-bread" style="background-image: url('{% static 'images/market-1.jpg' %}');">
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+        <p class="breadcrumbs">
+          <span class="mr-2"><a href="index.html">Home</a></span>
+          <span>About us</span>
+        </p>
+        <h1 class="mb-0 bread">About us</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="ftco-section about-section ftco-no-pb ftco-no-pt">
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-md-7 container text-center p-5 ftco-animate styled-border">
+        <h1 class="mb-3">
+          Introducing
+          <a href="{% url 'index' %}" class="text-primary translate-up d-inline-block">greenGrocery.com
+          </a>
+        </h1>
+        <p class="lead">
+          We deliver all types of Fresh and Organic
+          <strong class="text-danger">Fruits and Vegetables</strong> at your
+          doorstep with
+          <strong class="text-danger">low price</strong> possible and retain
+          <strong class="text-danger">100% of quality</strong> products.
+        </p>
+
+        <h1 class="mt-5 mb-3">
+          Large range of
+          <span class="text-primary translate-up d-inline-block">Seasonal</span>
+          and
+          <span class="text-primary translate-up d-inline-block">Tropical</span>
+          products
+        </h1>
+        <p class="lead">
+          We provide fresh range of
+          <strong class="text-danger">seasonal and tropical</strong>
+          fruits and vegetables, directly imported from its origin and
+          delivered to your doorstep. All our products are
+          <strong class="text-danger">organically produced</strong> and
+          <strong class="text-danger">handpicked</strong> for you to
+          maintain premium quality.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

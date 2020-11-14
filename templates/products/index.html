@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+
+<div class="hero-wrap hero-bread" style="background-image: url('{% static 'images/market-1.jpg' %}');">
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+        <p class="breadcrumbs">
+          <span class="mr-2"><a href="index.html">Home</a></span>
+          <span>Products</span>
+        </p>
+        <h1 class="mb-0 bread">Products</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 mb-3 mb-lg-5 align-self-center">
+        <ul class="product-category text-center">
+          <li><a href="{% url 'products:products' %}" {% if btn == 'all_products' %} class='active' {% endif %}>All</a>
+          </li>
+          <li><a href="{% url 'products:vegetables' %}" {% if btn == 'vegetables' %} class='active'
+              {% endif %}>Vegetables</a></li>
+          <li><a href="{% url 'products:fruits' %}" {% if btn == 'fruits' %} class='active' {% endif %}>Fruits</a></li>
+          <li><a href="{% url 'products:featured' %}" {% if btn == 'featured' %} class='active' {% endif %}>Featured</a>
+          </li>
+          <li><a href="{% url 'products:sale' %}" {% if btn == 'sale' %} class='active' {% endif %}>On Sale</a></li>
+        </ul>
+      </div>
+      {% include 'products/snippets/search-form.html' %}
+    </div>
+    <div class="row">
+      {% if qs %}
+      {% for item in qs %}
+      <div class="col-md-6 col-lg-3 ftco-animate">
+        <div class="product">
+          <a {% if btn == 'all_products' %} href="{% url 'products:products' item.slug %}"
+            {% elif btn == 'vegetables' %} href="{% url 'products:vegetables' item.slug %}" {% elif btn == 'fruits' %}
+            href="{% url 'products:fruits' item.slug %}" {% elif btn == 'featured' %}
+            href="{% url 'products:featured' item.slug %}" {% elif btn == 'sale' %}
+            href="{% url 'products:sale' item.slug %}" {% endif %}>
+            <span class="img-prod"><img class="img-fluid" src="{{ item.image.url }}" alt="" />
+              {% if item.on_sale %}
+              <span class="status">{{ item.discount }}%</span>
+              {% endif %}
+              <div class="overlay"></div>
+            </span>
+          </a>
+          <div class="text py-3 pb-4 px-3 text-center">
+            <h3><a href="#">{{ item.title }}</a></h3>
+            <div class="d-flex">
+              <div class="pricing">
+                <p class="price">
+                  {% if item.on_sale %}
+                  <span class="mr-2 price-dc">₹{{ item.price }}</span><span
+                    class="price-sale">₹{{ item.discounted_price }}</span>
+                  {% else %}
+                  <span>₹{{item.price}}</span>
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+            <div class="bottom-area d-flex px-3">
+              <div class="m-auto d-flex">
+                <a {% if btn == 'all_products' %} href="{% url 'products:products' item.slug %}"
+                  {% elif btn == 'vegetables' %} href="{% url 'products:vegetables' item.slug %}"
+                  {% elif btn == 'fruits' %} href="{% url 'products:fruits' item.slug %}" {% elif btn == 'featured' %}
+                  href="{% url 'products:featured' item.slug %}" {% elif btn == 'sale' %}
+                  href="{% url 'products:sale' item.slug %}" {% endif %}
+                  class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                  <span><i class="ion-ios-menu"></i></span>
+                </a>
+                <!-- <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                  <span><i class="ion-ios-cart"></i></span>
+                </a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <p>No products with <b>"{{ query|lower }}"</b> wery found in <b>{{ btn|capfirst }}</b>.</p>
+      {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+
+<div class="hero-wrap hero-bread" style="background-image: url('{% static 'images/market-1.jpg' %}');">
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+        <p class="breadcrumbs">
+          <span class="mr-2"><a href="index.html">Home</a></span>
+          <span>Login</span>
+        </p>
+        <h1 class="mb-0 bread">Login</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-5 col-lg-6 col-md-8 ftco-animate">
+        <form method="POST" action="{% url 'user:login' %}" class="login-form">
+          <h3 class="login-heading">Login</h3>
+          {% csrf_token %}
+
+          {% if request.GET.next_url %}
+          <input type="hidden" name="next" value="{{ request.GET.next_url }}">
+          {% endif %}
+
+          {% for message in messages %}
+          <div class="alert alert-danger">
+            <a class="close" href="#" data-dismiss="alert">×</a>
+
+            {{ message }}
+
+          </div>
+          {% endfor %}
+
+          <div class="form-group">
+            <label for="{{ login_form.username.id_for_label }}">Username</label>
+            <small class="form-text text-muted">{{ login_form.username.errors }}</small>
+            {{ login_form.username }}
+          </div>
+          <div class="form-group">
+            <label for="{{ login_form.password.id_for_label }}">Password</label>
+            <small class="form-text text-muted">{{ login_form.password.errors }}</small>
+            {{ login_form.password }}
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <input type="submit" value="LOGIN" class="btn btn-primary styled-border mt-3 px-4">
+            </div>
+            <div class="col-7">
+              <p>
+                Not Regitered Yet?
+                <a href="{% url 'user:register' %}" class="mt-3 py-3 px-4 d-inline-block translate-up">Register</a>
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function onlyNumberKey(evt) {
+    var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+      return false;
+    return true;
+  }
+</script>
+{% endblock %}

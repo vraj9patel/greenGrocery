@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+{% comment %} {% load extras %} {% endcomment %}
+<section id="home-section" class="hero">
+  <div class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image: url('{% static 'images/4-edited.jpg' %}');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+          <div class="col-md-12 ftco-animate text-center">
+            <h1 class="mb-2">We serve Fresh Vegetables &amp; Fruits</h1>
+            <h2 class="subheading mb-4">
+              We deliver organic vegetables &amp; fruits
+            </h2>
+            <p>
+              <a href="{% url 'about' %}" class="btn btn-primary styled-border">View Details</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-item" style="background-image: url('{% static 'images/5-edited.jpg' %}');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+          <div class="col-sm-12 ftco-animate text-center">
+            <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
+            <h2 class="subheading mb-4">
+              We deliver organic vegetables &amp; fruits
+            </h2>
+            <p>
+              <a href="{% url 'about' %}" class="btn btn-primary styled-border">View Details</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row no-gutters ftco-services">
+      <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services mb-md-0 mb-4">
+          <div class="icon bg-color-1 active d-flex justify-content-center align-items-center mb-2">
+            <span class="flaticon-shipped"></span>
+          </div>
+          <div class="media-body">
+            <h3 class="heading">Free Shipping</h3>
+            <span>On order over ₹100</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services mb-md-0 mb-4">
+          <div class="icon bg-color-2 d-flex justify-content-center align-items-center mb-2">
+            <span class="flaticon-diet"></span>
+          </div>
+          <div class="media-body">
+            <h3 class="heading">Always Fresh</h3>
+            <span>Product well package</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services mb-md-0 mb-4">
+          <div class="icon bg-color-3 d-flex justify-content-center align-items-center mb-2">
+            <span class="flaticon-award"></span>
+          </div>
+          <div class="media-body">
+            <h3 class="heading">Superior Quality</h3>
+            <span>Quality Products</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
+        <div class="media block-6 services mb-md-0 mb-4">
+          <div class="icon bg-color-4 d-flex justify-content-center align-items-center mb-2">
+            <span class="flaticon-customer-service"></span>
+          </div>
+          <div class="media-body">
+            <h3 class="heading">Support</h3>
+            <span>24/7 Support</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section ftco-category ftco-no-pt">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6 order-md-last align-items-stretch d-flex">
+            <div class="category-wrap-2 ftco-animate img align-self-stretch d-flex"
+              style="background-image: url('{% static 'images/category.jpg' %}');">
+              <div class="text text-center">
+                <h2>Vegetables</h2>
+                <p>Protect the health of every home</p>
+                <p>
+                  <a href="{% url 'products:products' %}" class="btn btn-primary styled-border">Shop now</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="category-wrap ftco-animate img mb-4 d-flex align-items-end"
+              style="background-image: url('{% static 'images/category-1.jpg' %}');">
+              <div class="text px-3 py-1">
+                <h2 class="mb-0"><a href="{% url 'products:vegetables' %}">Vegetables</a></h2>
+              </div>
+            </div>
+            <div class="category-wrap ftco-animate img d-flex align-items-end"
+              style="background-image: url('{% static 'images/category-2.jpg' %}');">
+              <div class="text px-3 py-1">
+                <h2 class="mb-0"><a href="{% url 'products:fruits' %}">Fruits</a></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center mb-3 pb-3">
+      <div class="col-md-12 heading-section text-center ftco-animate">
+        <span class="subheading">Products</span>
+        <h2 class="mb-4">Our Featured Products</h2>
+        <p class="lead">
+          Farm Fresh Handpicked Fruits and Vegetables now made easily
+          available at your doorstep.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      {% for item in qs %}
+      <div class="col-md-6 col-lg-3 ftco-animate">
+        <div class="product">
+          <a href="{% url 'products:featured' item.slug %}"
+            class="add-to-cart d-flex justify-content-center align-items-center text-center">
+            <span class="img-prod"><img class="img-fluid" src="{{ item.image.url }}" alt="" />
+              {% if item.on_sale %}
+              <span class="status">{{ item.discount }}%</span>
+              {% endif %}
+              <div class="overlay"></div>
+            </span>
+          </a>
+          <div class="text py-3 pb-4 px-3 text-center">
+            <h3>{{ item.title }}</h3>
+            <div class="d-flex">
+              <div class="pricing">
+                <p class="price">
+                  {% if item.on_sale %}
+                  <span class="mr-2 price-dc">₹{{ item.price }}</span><span
+                    class="price-sale">₹{{ item.discounted_price }}</span>
+                  {% else %}
+                  <span>₹{{item.price}}</span>
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+            <div class="bottom-area d-flex px-3">
+              <div class="m-auto d-flex">
+                <a href="{% url 'products:featured' item.slug %}"
+                  class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                  <span><i class="ion-ios-menu"></i></span>
+                </a>
+                <!-- <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                  <span><i class="ion-ios-cart"></i></span>
+                </a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section img" style="background-image: url('{% static 'images/bg_3.jpg' %}');">
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
+        <span class="subheading">Best Price For You</span>
+        <h2 class="mb-4">Deal of the day</h2>
+        <p class="color-change">
+          Perfect deal for a spinach fan. Grab it, before it expires...
+        </p>
+        <h3><a href="#" class="color-change">Spinach</a></h3>
+        <span class="price">₹10 <a href="#" class="color-change">now ₹5 only</a></span>
+        <div id="timer" class="d-flex mt-5">
+          <div class="time" id="days"></div>
+          <div class="time pl-3" id="hours"></div>
+          <div class="time pl-3" id="minutes"></div>
+          <div class="time pl-3" id="seconds"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section subscription-section">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-7 heading-section ftco-animate text-center">
+        <span class="subheading">Subscriptions</span>
+        <h2 class="mb-4">
+          Want hassle free Vegetables and Fruits at your home?
+        </h2>
+        <p class="">
+          Just select one of our packages and relax back at home without
+          being concerned about the prices.
+        </p>
+      </div>
+    </div>
+    <div class="row ftco-animate">
+      <div class="col-md-12">
+        <div class="carousel-subscription owl-carousel">
+          <div class="item">
+            <div class="card px-3 pt-3 text-center styled-border styled-border--lined__thin">
+              <h1 class="border-bottom p-3 text-primary">Family</h1>
+              <p class="lead p-3 text-info border-bottom">
+                ₹1350/Month
+              </p>
+              <ul class="list-unstyled p-3 text-primary">
+                <li class="pb-2">Upto 5 Vegetables</li>
+                <li class="p-2">Upto 3 Fruits</li>
+                <li class="p-2">4 Kilograms Max</li>
+                <li class="p-2">Free Home Delivery</li>
+              </ul>
+            </div>
+          </div>
+          <div class="item">
+            <div class="card px-3 pt-3 text-center styled-border styled-border--lined__thin">
+              <h1 class="border-bottom p-3 text-primary">
+                Grand Family
+              </h1>
+              <p class="lead p-3 text-info border-bottom">
+                ₹2250/Month
+              </p>
+              <ul class="list-unstyled p-3 text-primary">
+                <li class="pb-2">Upto 6 Vegetables</li>
+                <li class="p-2">Upto 4 Fruits</li>
+                <li class="p-2">6 Kilograms Max</li>
+                <li class="p-2">Free Home Delivery</li>
+              </ul>
+            </div>
+          </div>
+          <div class="item">
+            <div class="card px-3 pt-3 text-center styled-border styled-border--lined__thin">
+              <h1 class="border-bottom p-3 text-primary">Couple</h1>
+              <p class="lead p-3 text-info border-bottom">
+                ₹850/Month
+              </p>
+              <ul class="list-unstyled p-3 text-primary">
+                <li class="pb-2">Upto 4 Vegetables</li>
+                <li class="p-2">Upto 2 Fruits</li>
+                <li class="p-2">2 Kilograms Max</li>
+                <li class="p-2">Free Home Delivery</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-5 my-3 ftco-animate">
+    <h5>
+      <a class="btn btn-primary styled-border translate-up d-inline-block" href="subscription.html" role="button">Know
+        More</a>
+    </h5>
+  </div>
+</section>
+{% endblock %}

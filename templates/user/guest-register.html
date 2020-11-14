@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+
+<div class="hero-wrap hero-bread" style="background-image: url('{% static 'images/market-1.jpg' %}');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs">
+                    <span class="mr-2"><a href="login.html">Register</a></span>
+                    <span></span>
+                </p>
+                <h1 class="mb-0 bread">Guest</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 ftco-animate">
+                <form method="POST" class="register-form">
+                    <h3 class="mb-4 register-heading">Guest Register</h3>
+                    <div class="row align-items-end">
+                        {% csrf_token %}
+                        {% if request.GET.next_url %}
+                        <input type="hidden" name="next" value="{{ request.GET.next_url }}">
+                        {% endif %}
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <!-- <label for="{{ guest_form.email.id_for_label }}">Email Address</label>
+                                <small class="form-text text-muted">{{ guest_form.email.errors }}</small>
+                                {{ guest_form.email }} -->
+                                {{ guest_form }}
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="submit" class="btn btn-primary styled-border mt-3 px-4" value="Register" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function onlyNumberKey(evt) {
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    }
+</script>
+{% endblock %}

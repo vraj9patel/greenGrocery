@@ -1,0 +1,9 @@
+<form class="search-form col-lg-5 mb-5 text-center" method="GET" {% if btn == 'all_products' %}
+    action="{% url 'products:products' %}" {% elif btn == 'vegetables' %} action="{% url 'products:vegetables' %}"
+    {% elif btn == 'fruits' %} action="{% url 'products:fruits' %}" {% elif btn == 'featured' %}
+    action="{% url 'products:featured' %}" {% elif btn == 'sale' %} action="{% url 'products:sale' %}" {% endif %}>
+    <div class="form-group d-flex">
+        <input type="text" class="form-control rounded-0" name='q' value='{{ request.GET.q }}' placeholder="Search...">
+        <input type="submit" value="Search" class="submit px-3" />
+    </div>
+</form>
